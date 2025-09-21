@@ -1,0 +1,67 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/1/DMux8Way.hdl
+/**
+ * 8-way demultiplexor:
+ * [a, b, c, d, e, f, g, h] = [in, 0,  0,  0,  0,  0,  0,  0] if sel = 000
+ *                            [0, in,  0,  0,  0,  0,  0,  0] if sel = 001
+ *                            [0,  0, in,  0,  0,  0,  0,  0] if sel = 010
+ *                            [0,  0,  0, in,  0,  0,  0,  0] if sel = 011
+ *                            [0,  0,  0,  0, in,  0,  0,  0] if sel = 100
+ *                            [0,  0,  0,  0,  0, in,  0,  0] if sel = 101
+ *                            [0,  0,  0,  0,  0,  0, in,  0] if sel = 110
+ *                            [0,  0,  0,  0,  0,  0,  0, in] if sel = 111
+ */
+CHIP DMux8Way {
+    IN in, sel[3];
+    OUT a, b, c, d, e, f, g, h;
+
+    PARTS:
+
+    Nand(a = sel[0], b = sel[0], out = notsel0);
+    Nand(a = sel[1], b = sel[1], out = notsel1);
+    Nand(a = sel[2], b = sel[2], out = notsel2);
+    
+    Nand(a = in, b = notsel0, out = innotinsel0aceg);
+    Nand(a = innotinsel0aceg, b = innotinsel0aceg, out = notinsel0aceg);
+
+    Nand(a = in, b = sel[0], out = innotinnotselbdfh);
+    Nand(a = innotinnotselbdfh, b = innotinnotselbdfh, out = notinnotselbdfh);
+
+
+    Nand(a = notinsel0aceg, b = notsel1, out = ininsel0acegsel1ae);
+    Nand(a = ininsel0acegsel1ae, b = ininsel0acegsel1ae, out = insel0acegsel1ae);  
+    
+    Nand(a = notinsel0aceg, b = sel[1], out = ininsel0acegnotsel1cg);
+    Nand(a = ininsel0acegnotsel1cg, b = ininsel0acegnotsel1cg, out = insel0acegnotsel1cg);  
+    
+    Nand(a = notinnotselbdfh, b = notsel1, out = ininselbdfhsel1bf);
+    Nand(a = ininselbdfhsel1bf, b = ininselbdfhsel1bf, out = inselbdfhsel1bf);  
+
+    Nand(a = notinnotselbdfh, b = sel[1], out = ininselbdfhsel1dh);
+    Nand(a = ininselbdfhsel1dh, b = ininselbdfhsel1dh, out = inselbdfhsel1dh);  
+
+
+    Nand(a = insel0acegsel1ae, b = notsel2, out = outa);
+    Nand(a = outa, b = outa, out = a);  
+    Nand(a = insel0acegsel1ae, b = sel[2], out = oute);
+    Nand(a = oute, b = oute, out = e);  
+    
+    Nand(a = insel0acegnotsel1cg, b = notsel2, out = outc);
+    Nand(a = outc, b = outc, out = c);  
+    Nand(a = insel0acegnotsel1cg, b = sel[2], out = outg);
+    Nand(a = outg, b = outg, out = g);  
+    
+    Nand(a = inselbdfhsel1bf, b = notsel2, out = outb);
+    Nand(a = outb, b = outb, out = b);  
+    Nand(a = inselbdfhsel1bf, b = sel[2], out = outf);
+    Nand(a = outf, b = outf, out = f);  
+
+    Nand(a = inselbdfhsel1dh, b = notsel2, out = outd);
+    Nand(a = outd, b = outd, out = d);   
+    Nand(a = inselbdfhsel1dh, b = sel[2], out = outh);
+    Nand(a = outh, b = outh, out = h);  
+
+    //// Replace this comment with your code.
+}

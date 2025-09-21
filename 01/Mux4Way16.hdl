@@ -1,0 +1,274 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/1/Mux4Way17.hdl
+/**
+ * 4-way 16-bit multiplexor:
+ * out = a if sel = 00
+ *       b if sel = 01
+ *       c if sel = 10
+ *       d if sel = 11
+ */
+CHIP Mux4Way16 {
+    IN a[16], b[16], c[16], d[16], sel[2];
+    OUT out[16];
+    
+    PARTS:
+    //bit0
+    Nand(a= sel[0],b = sel[0], out = notselab0);
+    Nand(a= a[0], b = notselab0, out = nota0selab0);
+    Nand(a = b[0], b = sel[0], out =notb0notsel0);
+    Nand(a= nota0selab0, b = notb0notsel0, out = ab0);
+
+    Nand(a =sel[0], b = sel[0], out = notselcd0);
+    Nand(a = c[0],b = notselcd0,out = notc0selcd0);
+    Nand(a = d[0], b = sel[0], out = notd0notsel0);
+    Nand(a = notc0selcd0, b = notd0notsel0, out = cd0);
+
+    Nand(a = sel[1],b = sel[1], out = notselabcd0);
+    Nand(a = ab0, b= notselabcd0, out = notab0selabcd0);
+    Nand(a = cd0, b = sel[1], out = notcd0notsel1);
+    Nand(a= notab0selabcd0, b = notcd0notsel1, out =out[0]);
+
+    //bit1
+    Nand(a= sel[0],b = sel[0], out = notselab1);
+    Nand(a= a[1], b = notselab1, out = nota1selab1);
+    Nand(a = b[1], b = sel[0], out =notb1notsel0);
+    Nand(a= nota1selab1, b = notb1notsel0, out = ab1);
+
+    Nand(a =sel[0], b = sel[0], out = notselcd1);
+    Nand(a = c[1],b = notselcd1,out = notc1selcd1);
+    Nand(a = d[1], b = sel[0], out = notd1notsel0);
+    Nand(a = notc1selcd1, b = notd1notsel0, out = cd1);
+
+    Nand(a = sel[1],b = sel[1], out = notselabcd1);
+    Nand(a = ab1, b= notselabcd1, out = notab1selabcd1);
+    Nand(a = cd1, b = sel[1], out = notcd1notsel1);
+    Nand(a= notab1selabcd1, b = notcd1notsel1, out =out[1]);
+
+    //bit2
+    Nand(a= sel[0],b = sel[0], out = notselab2);
+    Nand(a= a[2], b = notselab2, out = nota2selab2);
+    Nand(a = b[2], b = sel[0], out =notb2notsel0);
+    Nand(a= nota2selab2, b = notb2notsel0, out = ab2);
+
+    Nand(a =sel[0], b = sel[0], out = notselcd2);
+    Nand(a = c[2],b = notselcd2,out = notc2selcd2);
+    Nand(a = d[2], b = sel[0], out = notd2notsel0);
+    Nand(a = notc2selcd2, b = notd2notsel0, out = cd2);
+
+    Nand(a = sel[1],b = sel[1], out = notselabcd2);
+    Nand(a = ab2, b= notselabcd2, out = notab2selabcd2);
+    Nand(a = cd2, b = sel[1], out = notcd2notsel1);
+    Nand(a= notab2selabcd2, b = notcd2notsel1, out =out[2]);
+    
+    //bit3
+    Nand(a= sel[0],b = sel[0], out = notselab3);
+    Nand(a= a[3], b = notselab3, out = nota3selab3);
+    Nand(a = b[3], b = sel[0], out =notb3notsel0);
+    Nand(a= nota3selab3, b = notb3notsel0, out = ab3);
+
+    Nand(a =sel[0], b = sel[0], out = notselcd3);
+    Nand(a = c[3],b = notselcd3,out = notc3selcd3);
+    Nand(a = d[3], b = sel[0], out = notd3notsel0);
+    Nand(a = notc3selcd3, b = notd3notsel0, out = cd3);
+
+    Nand(a = sel[1],b = sel[1], out = notselabcd3);
+    Nand(a = ab3, b= notselabcd3, out = notab3selabcd3);
+    Nand(a = cd3, b = sel[1], out = notcd3notsel1);
+    Nand(a= notab3selabcd3, b = notcd3notsel1, out =out[3]);
+    
+    //bit4
+    Nand(a= sel[0],b = sel[0], out = notselab4);
+    Nand(a= a[4], b = notselab4, out = nota4selab4);
+    Nand(a = b[4], b = sel[0], out =notb4notsel0);
+    Nand(a= nota4selab4, b = notb4notsel0, out = ab4);
+
+    Nand(a =sel[0], b = sel[0], out = notselcd4);
+    Nand(a = c[4],b = notselcd4,out = notc4selcd4);
+    Nand(a = d[4], b = sel[0], out = notd4notsel0);
+    Nand(a = notc4selcd4, b = notd4notsel0, out = cd4);
+
+    Nand(a = sel[1],b = sel[1], out = notselabcd4);
+    Nand(a = ab4, b= notselabcd4, out = notab4selabcd4);
+    Nand(a = cd4, b = sel[1], out = notcd4notsel1);
+    Nand(a= notab4selabcd4, b = notcd4notsel1, out =out[4]);
+
+    //bit5
+    Nand(a= sel[0],b = sel[0], out = notselab5);
+    Nand(a= a[5], b = notselab5, out = nota5selab5);
+    Nand(a = b[5], b = sel[0], out =notb5notsel0);
+    Nand(a= nota5selab5, b = notb5notsel0, out = ab5);
+
+    Nand(a =sel[0], b = sel[0], out = notselcd5);
+    Nand(a = c[5],b = notselcd5,out = notc5selcd5);
+    Nand(a = d[5], b = sel[0], out = notd5notsel0);
+    Nand(a = notc5selcd5, b = notd5notsel0, out = cd5);
+
+    Nand(a = sel[1],b = sel[1], out = notselabcd5);
+    Nand(a = ab5, b= notselabcd5, out = notab5selabcd5);
+    Nand(a = cd5, b = sel[1], out = notcd5notsel1);
+    Nand(a= notab5selabcd5, b = notcd5notsel1, out =out[5]);
+
+
+    //bit6
+    Nand(a= sel[0],b = sel[0], out = notselab6);
+    Nand(a= a[6], b = notselab6, out = nota6selab6);
+    Nand(a = b[6], b = sel[0], out =notb6notsel0);
+    Nand(a= nota6selab6, b = notb6notsel0, out = ab6);
+
+    Nand(a =sel[0], b = sel[0], out = notselcd6);
+    Nand(a = c[6],b = notselcd6,out = notc6selcd6);
+    Nand(a = d[6], b = sel[0], out = notd6notsel0);
+    Nand(a = notc6selcd6, b = notd6notsel0, out = cd6);
+
+    Nand(a = sel[1],b = sel[1], out = notselabcd6);
+    Nand(a = ab6, b= notselabcd6, out = notab6selabcd6);
+    Nand(a = cd6, b = sel[1], out = notcd6notsel1);
+    Nand(a= notab6selabcd6, b = notcd6notsel1, out =out[6]);
+
+    //bit7
+    Nand(a= sel[0],b = sel[0], out = notselab7);
+    Nand(a= a[7], b = notselab7, out = nota7selab7);
+    Nand(a = b[7], b = sel[0], out =notb7notsel0);
+    Nand(a= nota7selab7, b = notb7notsel0, out = ab7);
+
+    Nand(a =sel[0], b = sel[0], out = notselcd7);
+    Nand(a = c[7],b = notselcd7,out = notc7selcd7);
+    Nand(a = d[7], b = sel[0], out = notd7notsel0);
+    Nand(a = notc7selcd7, b = notd7notsel0, out = cd7);
+
+    Nand(a = sel[1],b = sel[1], out = notselabcd7);
+    Nand(a = ab7, b= notselabcd7, out = notab7selabcd7);
+    Nand(a = cd7, b = sel[1], out = notcd7notsel1);
+    Nand(a= notab7selabcd7, b = notcd7notsel1, out =out[7]);
+    
+    //bit8
+    Nand(a= sel[0],b = sel[0], out = notselab8);
+    Nand(a= a[8], b = notselab8, out = nota8selab8);
+    Nand(a = b[8], b = sel[0], out =notb8notsel0);
+    Nand(a= nota8selab8, b = notb8notsel0, out = ab8);
+
+    Nand(a =sel[0], b = sel[0], out = notselcd8);
+    Nand(a = c[8],b = notselcd8,out = notc8selcd8);
+    Nand(a = d[8], b = sel[0], out = notd8notsel0);
+    Nand(a = notc8selcd8, b = notd8notsel0, out = cd8);
+
+    Nand(a = sel[1],b = sel[1], out = notselabcd8);
+    Nand(a = ab8, b= notselabcd8, out = notab8selabcd8);
+    Nand(a = cd8, b = sel[1], out = notcd8notsel1);
+    Nand(a= notab8selabcd8, b = notcd8notsel1, out =out[8]);
+
+    //bit9
+    Nand(a= sel[0],b = sel[0], out = notselab9);
+    Nand(a= a[9], b = notselab9, out = nota9selab9);
+    Nand(a = b[9], b = sel[0], out =notb9notsel0);
+    Nand(a= nota9selab9, b = notb9notsel0, out = ab9);
+
+    Nand(a =sel[0], b = sel[0], out = notselcd9);
+    Nand(a = c[9],b = notselcd9,out = notc9selcd9);
+    Nand(a = d[9], b = sel[0], out = notd9notsel0);
+    Nand(a = notc9selcd9, b = notd9notsel0, out = cd9);
+
+    Nand(a = sel[1],b = sel[1], out = notselabcd9);
+    Nand(a = ab9, b= notselabcd9, out = notab9selabcd9);
+    Nand(a = cd9, b = sel[1], out = notcd9notsel1);
+    Nand(a= notab9selabcd9, b = notcd9notsel1, out =out[9]);
+
+    //bit10
+    Nand(a= sel[0],b = sel[0], out = notselab10);
+    Nand(a= a[10], b = notselab10, out = nota10selab10);
+    Nand(a = b[10], b = sel[0], out =notb10notsel0);
+    Nand(a= nota10selab10, b = notb10notsel0, out = ab10);
+
+    Nand(a =sel[0], b = sel[0], out = notselcd10);
+    Nand(a = c[10],b = notselcd10,out = notc10selcd10);
+    Nand(a = d[10], b = sel[0], out = notd10notsel0);
+    Nand(a = notc10selcd10, b = notd10notsel0, out = cd10);
+
+    Nand(a = sel[1],b = sel[1], out = notselabcd10);
+    Nand(a = ab10, b= notselabcd10, out = notab10selabcd10);
+    Nand(a = cd10, b = sel[1], out = notcd10notsel1);
+    Nand(a= notab10selabcd10, b = notcd10notsel1, out =out[10]);
+    
+    //bit11
+    Nand(a= sel[0],b = sel[0], out = notselab11);
+    Nand(a= a[11], b = notselab11, out = nota11selab11);
+    Nand(a = b[11], b = sel[0], out =notb11notsel0);
+    Nand(a= nota11selab11, b = notb11notsel0, out = ab11);
+
+    Nand(a =sel[0], b = sel[0], out = notselcd11);
+    Nand(a = c[11],b = notselcd11,out = notc11selcd11);
+    Nand(a = d[11], b = sel[0], out = notd11notsel0);
+    Nand(a = notc11selcd11, b = notd11notsel0, out = cd11);
+
+    Nand(a = sel[1],b = sel[1], out = notselabcd11);
+    Nand(a = ab11, b= notselabcd11, out = notab11selabcd11);
+    Nand(a = cd11, b = sel[1], out = notcd11notsel1);
+    Nand(a= notab11selabcd11, b = notcd11notsel1, out =out[11]);
+
+    //bit12
+    Nand(a= sel[0],b = sel[0], out = notselab12);
+    Nand(a= a[12], b = notselab12, out = nota12selab12);
+    Nand(a = b[12], b = sel[0], out =notb12notsel0);
+    Nand(a= nota12selab12, b = notb12notsel0, out = ab12);
+
+    Nand(a =sel[0], b = sel[0], out = notselcd12);
+    Nand(a = c[12],b = notselcd12,out = notc12selcd12);
+    Nand(a = d[12], b = sel[0], out = notd12notsel0);
+    Nand(a = notc12selcd12, b = notd12notsel0, out = cd12);
+
+    Nand(a = sel[1],b = sel[1], out = notselabcd12);
+    Nand(a = ab12, b= notselabcd12, out = notab12selabcd12);
+    Nand(a = cd12, b = sel[1], out = notcd12notsel1);
+    Nand(a= notab12selabcd12, b = notcd12notsel1, out =out[12]);
+
+    //bit13
+    Nand(a= sel[0],b = sel[0], out = notselab13);
+    Nand(a= a[13], b = notselab13, out = nota13selab13);
+    Nand(a = b[13], b = sel[0], out =notb13notsel0);
+    Nand(a= nota13selab13, b = notb13notsel0, out = ab13);
+
+    Nand(a =sel[0], b = sel[0], out = notselcd13);
+    Nand(a = c[13],b = notselcd13,out = notc13selcd13);
+    Nand(a = d[13], b = sel[0], out = notd13notsel0);
+    Nand(a = notc13selcd13, b = notd13notsel0, out = cd13);
+
+    Nand(a = sel[1],b = sel[1], out = notselabcd13);
+    Nand(a = ab13, b= notselabcd13, out = notab13selabcd13);
+    Nand(a = cd13, b = sel[1], out = notcd13notsel1);
+    Nand(a= notab13selabcd13, b = notcd13notsel1, out =out[13]);
+   
+    //bit14
+    Nand(a= sel[0],b = sel[0], out = notselab14);
+    Nand(a= a[14], b = notselab14, out = nota14selab14);
+    Nand(a = b[14], b = sel[0], out =notb14notsel0);
+    Nand(a= nota14selab14, b = notb14notsel0, out = ab14);
+
+    Nand(a =sel[0], b = sel[0], out = notselcd14);
+    Nand(a = c[14],b = notselcd14,out = notc14selcd14);
+    Nand(a = d[14], b = sel[0], out = notd14notsel0);
+    Nand(a = notc14selcd14, b = notd14notsel0, out = cd14);
+
+    Nand(a = sel[1],b = sel[1], out = notselabcd14);
+    Nand(a = ab14, b= notselabcd14, out = notab14selabcd14);
+    Nand(a = cd14, b = sel[1], out = notcd14notsel1);
+    Nand(a= notab14selabcd14, b = notcd14notsel1, out =out[14]);
+    
+    //bit15
+    Nand(a= sel[0],b = sel[0], out = notselab15);
+    Nand(a= a[15], b = notselab15, out = nota15selab15);
+    Nand(a = b[15], b = sel[0], out =notb15notsel0);
+    Nand(a= nota15selab15, b = notb15notsel0, out = ab15);
+
+    Nand(a =sel[0], b = sel[0], out = notselcd15);
+    Nand(a = c[15],b = notselcd15,out = notc15selcd15);
+    Nand(a = d[15], b = sel[0], out = notd15notsel0);
+    Nand(a = notc15selcd15, b = notd15notsel0, out = cd15);
+
+    Nand(a = sel[1],b = sel[1], out = notselabcd15);
+    Nand(a = ab15, b= notselabcd15, out = notab15selabcd15);
+    Nand(a = cd15, b = sel[1], out = notcd15notsel1);
+    Nand(a= notab15selabcd15, b = notcd15notsel1, out =out[15]);
+    //// Replace this comment with your code.
+}

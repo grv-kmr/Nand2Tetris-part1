@@ -1,0 +1,71 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/1/Mux16.hdl
+/**
+ * 16-bit multiplexor: 
+ * for i = 0, ..., 15:
+ * if (sel = 0) out[i] = a[i], else out[i] = b[i]
+ */
+CHIP Mux16 {
+    IN a[16], b[16], sel;
+    OUT out[16];
+
+    PARTS:
+
+    Nand (a=sel,b=sel,out=notsel);
+    
+    Nand (a=a[0],b=notsel,out=tmp0);
+    Nand (a=a[1],b=notsel,out=tmp1);
+    Nand (a=a[2],b=notsel,out=tmp2);
+    Nand (a=a[3],b=notsel,out=tmp3);
+    Nand (a=a[4],b=notsel,out=tmp4);
+    Nand (a=a[5],b=notsel,out=tmp5);
+    Nand (a=a[6],b=notsel,out=tmp6);
+    Nand (a=a[7],b=notsel,out=tmp7);
+    Nand (a=a[8],b=notsel,out=tmp8);
+    Nand (a=a[9],b=notsel,out=tmp9);
+    Nand (a=a[10],b=notsel,out=tmp10);
+    Nand (a=a[11],b=notsel,out=tmp11);
+    Nand (a=a[12],b=notsel,out=tmp12);
+    Nand (a=a[13],b=notsel,out=tmp13);
+    Nand (a=a[14],b=notsel,out=tmp14);
+    Nand (a=a[15],b=notsel,out=tmp15);
+
+
+    Nand (a=b[0],b=sel,out=tp0);
+    Nand (a=b[1],b=sel,out=tp1);
+    Nand (a=b[2],b=sel,out=tp2);
+    Nand (a=b[3],b=sel,out=tp3);
+    Nand (a=b[4],b=sel,out=tp4);
+    Nand (a=b[5],b=sel,out=tp5);
+    Nand (a=b[6],b=sel,out=tp6);
+    Nand (a=b[7],b=sel,out=tp7);
+    Nand (a=b[8],b=sel,out=tp8);
+    Nand (a=b[9],b=sel,out=tp9);
+    Nand (a=b[10],b=sel,out=tp10);
+    Nand (a=b[11],b=sel,out=tp11);
+    Nand (a=b[12],b=sel,out=tp12);
+    Nand (a=b[13],b=sel,out=tp13);
+    Nand (a=b[14],b=sel,out=tp14);
+    Nand (a=b[15],b=sel,out=tp15);
+
+    Nand (a= tmp0, b = tp0, out = out[0]);
+    Nand (a= tmp1, b = tp1, out = out[1]);
+    Nand (a= tmp2, b = tp2, out = out[2]);
+    Nand (a= tmp3, b = tp3, out = out[3]);
+    Nand (a= tmp4, b = tp4, out = out[4]);
+    Nand (a= tmp5, b = tp5, out = out[5]);
+    Nand (a= tmp6, b = tp6, out = out[6]);
+    Nand (a= tmp7, b = tp7, out = out[7]);
+    Nand (a= tmp8, b = tp8, out = out[8]);
+    Nand (a= tmp9, b = tp9, out = out[9]);
+    Nand (a= tmp10, b = tp10, out = out[10]);
+    Nand (a= tmp11, b = tp11, out = out[11]);
+    Nand (a= tmp12, b = tp12, out = out[12]);
+    Nand (a= tmp13, b = tp13, out = out[13]);
+    Nand (a= tmp14, b = tp14, out = out[14]);
+    Nand (a= tmp15, b = tp15, out = out[15]);
+
+    //// Replace this comment with your code.
+}

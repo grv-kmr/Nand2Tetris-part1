@@ -1,0 +1,80 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/1/Or16.hdl
+/**
+ * 16-bit Or gate:
+ * for i = 0, ..., 15:
+ * out[i] = a[i] Or b[i] 
+ */
+CHIP Or16 {
+    IN a[16], b[16];
+    OUT out[16];
+
+    PARTS:
+    Nand(a = a[0], b = a[0], out = ta0);
+    Nand(a = b[0], b = b[0], out = tb0);
+    Nand(a = ta0, b = tb0, out = out[0]);
+
+    Nand(a = a[1], b = a[1], out = ta1);
+    Nand(a = b[1], b = b[1], out = tb1);
+    Nand(a = ta1, b = tb1, out = out[1]);
+
+    Nand(a = a[2], b = a[2], out = ta2);
+    Nand(a = b[2], b = b[2], out = tb2);
+    Nand(a = ta2, b = tb2, out = out[2]);
+    
+    Nand(a = a[3], b = a[3], out = ta3);
+    Nand(a = b[3], b = b[3], out = tb3);
+    Nand(a = ta3, b = tb3, out = out[3]);
+    
+    Nand(a = a[4], b = a[4], out = ta4);
+    Nand(a = b[4], b = b[4], out = tb4);
+    Nand(a = ta4, b = tb4, out = out[4]);
+    
+    Nand(a = a[5], b = a[5], out = ta5);
+    Nand(a = b[5], b = b[5], out = tb5);
+    Nand(a = ta5, b = tb5, out = out[5]);
+    
+    Nand(a = a[6], b = a[6], out = ta6);
+    Nand(a = b[6], b = b[6], out = tb6);
+    Nand(a = ta6, b = tb6, out = out[6]);
+    
+    Nand(a = a[7], b = a[7], out = ta7);
+    Nand(a = b[7], b = b[7], out = tb7);
+    Nand(a = ta7, b = tb7, out = out[7]);
+    
+
+    Nand(a = a[8], b = a[8], out = ta8);
+    Nand(a = b[8], b = b[8], out = tb8);
+    Nand(a = ta8, b = tb8, out = out[8]);
+    
+    Nand(a = a[9], b = a[9], out = ta9);
+    Nand(a = b[9], b = b[9], out = tb9);
+    Nand(a = ta9, b = tb9, out = out[9]);
+    
+    Nand(a = a[10], b = a[10], out = ta10);
+    Nand(a = b[10], b = b[10], out = tb10);
+    Nand(a = ta10, b = tb10, out = out[10]);
+    
+    Nand(a = a[11], b = a[11], out = ta11);
+    Nand(a = b[11], b = b[11], out = tb11);
+    Nand(a = ta11, b = tb11, out = out[11]);
+    
+    Nand(a = a[12], b = a[12], out = ta12);
+    Nand(a = b[12], b = b[12], out = tb12);
+    Nand(a = ta12, b = tb12, out = out[12]);
+    
+    Nand(a = a[13], b = a[13], out = ta13);
+    Nand(a = b[13], b = b[13], out = tb13);
+    Nand(a = ta13, b = tb13, out = out[13]);
+    
+    Nand(a = a[14], b = a[14], out = ta14);
+    Nand(a = b[14], b = b[14], out = tb14);
+    Nand(a = ta14, b = tb14, out = out[14]);
+    
+    Nand(a = a[15], b = a[15], out = ta15);
+    Nand(a = b[15], b = b[15], out = tb15);
+    Nand(a = ta15, b = tb15, out = out[15]);
+    //// Replace this comment with your code.
+}
