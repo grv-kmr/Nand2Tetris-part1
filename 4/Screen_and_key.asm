@@ -1,0 +1,57 @@
+@SCREEN
+D=A
+@ADDR
+M=D
+(LOOP)
+    @KBD
+    D=M
+    @R0
+    M=D
+
+    (NOTZERO)
+    D;JGT
+
+    (ZERO)
+        @ZERO
+            @SCREEN
+            D=A
+            @ADDR
+            M=D
+            A=M
+            M=0
+            (LOOP2)
+                @1
+                D=A
+                @ADDR
+                M=D+M
+                A=M
+                M=0
+                @KBD
+                D=M
+                @R0
+                M=D
+            @LOOP2
+            D;JEQ
+
+    @NOTZERO
+        @SCREEN
+        D=A
+        @ADDR
+        M=D
+        A=M
+        M=-1
+        (LOOP3)
+            @1
+            D=A
+            @ADDR
+            M=D+M
+            A=M
+            M=-1
+            @KBD
+            D=M
+            @R0
+            M=D
+        @LOOP3
+        D;JGT
+@LOOP
+0;JMP
